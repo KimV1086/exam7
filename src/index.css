@@ -100,7 +100,7 @@ body {
   padding: 15px;
 }
 
-.menu-items {
+.menu-elements {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
