@@ -10,9 +10,9 @@ class App extends Component {
     state = {
         elements: [
             {id: 1, name: 'Hamburger', price: 80, image: foodImg, count: 0},
-            {id: 5, name: 'Coffee', price: 50, image: drinkImg, count: 0},
+            {id: 5, name: 'Coffee', price: 30, image: drinkImg, count: 0},
             {id: 2, name: 'Cheeseburger', price: 90, image: foodImg, count: 0},
-            {id: 3, name: 'Tea', price: 30, image: drinkImg, count: 0},
+            {id: 3, name: 'Tea', price: 20, image: drinkImg, count: 0},
             {id: 6, name: 'Fries', price: 45, image: foodImg, count: 0},
             {id: 4, name: 'Cola', price: 40, image: drinkImg, count: 0},
         ],
