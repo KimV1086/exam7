@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import MenuItem from './components/MenuItem';
+
 import foodImg from './assets/food-img.png';
 import drinkImg from './assets/drink-img.png';
 
@@ -30,7 +32,7 @@ class App extends Component {
             }
         }
 
-        this.setState({items}, this.calcTotalPrice());
+        // this.setState({items}, this.calcTotalPrice());
 
     };
 
@@ -38,8 +40,22 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
 
+              <div className="menu">
+                <h3 className="module-title">Menu</h3>
+                <div className="menu-items">
+                  {this.state.items.map(item => (
+                      <MenuItem
+                          key={item.id}
+                          name={item.name}
+                          price={item.price}
+                          image={item.image}
+                          onAddItem={this.addItemHandler.bind(this, item.id)}
+                      />
+                  ))}
+                </div>
+              </div>
             </div>
         );
     }
