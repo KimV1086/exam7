@@ -8,7 +8,7 @@ import drinkImg from './assets/drink-img.png';
 
 class App extends Component {
     state = {
-        items: [
+        elements: [
             {id: 1, name: 'Hamburger', price: 80, image: foodImg, count: 0},
             {id: 5, name: 'Coffee', price: 50, image: drinkImg, count: 0},
             {id: 2, name: 'Cheeseburger', price: 90, image: foodImg, count: 0},
@@ -20,25 +20,41 @@ class App extends Component {
     };
 
 
-    addItems = (id) => {
-        const items = [...this.state.items];
+    addElements = (id) => {
+        const elements = [...this.state.elements];
 
-        for (let i = 0; i < items.length; i++) {
-            if (items[i].id === id) {
-                items[i].count++;
+        for (let i = 0; i < elements.length; i++) {
+            if (elements[i].id === id) {
+                elements[i].count++;
             }
         }
 
-        this.setState({items}, this.calcResult());
+        this.setState({elements}, this.calcResult());
+    };
+
+    removeElements = (id) => {
+        const elements = [...this.state.elements];
+
+        for (let i = 0; i < elements.length; i++) {
+            if (elements[i].id === id) {
+                elements[i].count--;
+            }
+
+            if (elements[i].count < 0) {
+                elements[i].count = 0;
+            }
+        }
+
+        this.setState({elements}, this.calcResult());
     };
 
     calcResult = () => {
-        const items = [...this.state.items];
+        const elements = [...this.state.elements];
         let totalPrice = 0;
 
-        for (let i = 0; i < items.length; i++) {
-            if (items[i].count) {
-                let itemPrice = items[i].count * items[i].price;
+        for (let i = 0; i < elements.length; i++) {
+            if (elements[i].count) {
+                let itemPrice = elements[i].count * elements[i].price;
                 totalPrice += itemPrice;
             }
         }
@@ -46,30 +62,13 @@ class App extends Component {
         this.setState({totalPrice});
     };
 
-    removeItems = (id) => {
-        const items = [...this.state.items];
-
-        for (let i = 0; i < items.length; i++) {
-            if (items[i].id === id) {
-                items[i].count--;
-            }
-
-            if (items[i].count < 0) {
-                items[i].count = 0;
-            }
-        }
-
-        this.setState({items}, this.calcResult());
-    };
-
-
     render() {
-        let orderList = null;
+        let orderTxt = null;
 
         if (this.state.totalPrice > 0) {
-            orderList = (
+            orderTxt = (
                 <div className="order-inner">
-                    {this.state.items.map(order => {
+                    {this.state.elements.map(order => {
                         if (order.count) {
                             return (
                                 <Order
@@ -77,7 +76,7 @@ class App extends Component {
                                     name={order.name}
                                     count={order.count}
                                     price={order.price}
-                                    onRemoveItem={this.removeItems.bind(this, order.id)}
+                                    onRemoveItem={this.removeElements.bind(this, order.id)}
                                 />
                             )
                         }
@@ -90,10 +89,10 @@ class App extends Component {
                 </div>
             )
         } else {
-            orderList = (
+            orderTxt = (
                 <div className="order-inner">
                     <p>Order is empty!</p>
-                    <p>Please add some items!</p>
+                    <p>Please add some elements!</p>
                 </div>
             )
         }
@@ -102,19 +101,18 @@ class App extends Component {
             <div className="container">
                 <div className="order">
                     <h3 className="module-title">Order details</h3>
-
-                    {orderList}
+                    {orderTxt}
                 </div>
                 <div className="menu">
                     <h3 className="module-title">Menu</h3>
-                    <div className="menu-items">
-                        {this.state.items.map(item => (
+                    <div className="menu-elements">
+                        {this.state.elements.map(item => (
                             <Menu
                                 key={item.id}
                                 name={item.name}
                                 price={item.price}
                                 image={item.image}
-                                onAddItem={this.addItems.bind(this, item.id)}
+                                onAddItem={this.addElements.bind(this, item.id)}
                             />
                         ))}
 
