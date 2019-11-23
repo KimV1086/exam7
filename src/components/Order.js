@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OrderItem = props => (
+const Order = props => (
     <div className="order-item">
         <span>{props.name}</span>
         <span>x {props.count}</span>
@@ -9,4 +9,4 @@ const OrderItem = props => (
     </div>
 );
 
-export default OrderItem;
+export default Order;

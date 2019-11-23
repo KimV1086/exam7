@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MenuItem = props => (
+const Menu = props => (
     <div className="menu-item" onClick={props.onAddItem}>
         <div className="menu-item__img">
             <img src={props.image} alt={props.name}/>
@@ -12,4 +12,4 @@ const MenuItem = props => (
     </div>
 );
 
-export default MenuItem;
+export default Menu;
