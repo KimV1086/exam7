@@ -93,6 +93,7 @@ class App extends Component {
             orderList = (
                 <div className="order-inner">
                     <p>Order is empty!</p>
+                    <p>Please add some items!</p>
                 </div>
             )
         }
